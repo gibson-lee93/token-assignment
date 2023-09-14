@@ -2,8 +2,10 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"token-assignment/internal/database"
+	_pHandler "token-assignment/internal/project/handler"
+	_pRepository "token-assignment/internal/project/repository"
+	_pService "token-assignment/internal/project/service"
 
 	"github.com/labstack/echo/v4"
 )
@@ -11,11 +13,13 @@ import (
 func main() {
 	log.Println("Server Start")
 
-	database.GetMySqlDatabase()
+	projectDB := database.GetMySqlDatabase()
+	pRepository := _pRepository.NewProjectRepository(projectDB)
+	pService := _pService.NewProjectService(pRepository)
 
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+
+	_pHandler.NewProjectHandler(e, pService)
+
 	e.Logger.Fatal(e.Start(":1323"))
 }
