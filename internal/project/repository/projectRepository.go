@@ -8,6 +8,7 @@ import (
 
 type ProjectRepository interface {
 	CreateTokenInfo(entity.TokenInfo) error
+	GetTokenInfo(entity.GetTokenInfoReq) (entity.TokenInfo, error)
 }
 
 type ProjectRepo struct {

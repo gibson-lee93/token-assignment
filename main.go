@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	log.Println("Server Start")
 
 	projectDB := database.GetMySqlDatabase()
