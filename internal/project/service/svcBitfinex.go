@@ -45,7 +45,7 @@ func (svc *ProjectSvc) GetBitfinexTokenInfo(tokenSymbol string) error {
 	tokenInfoEntity := entity.TokenInfo{
 		Symbol:    tokenSymbol,
 		Price:     float32(price),
-		Source:    "Bitfinex",
+		Source:    "bitfinex",
 		Timestamp: timestamp,
 	}
 

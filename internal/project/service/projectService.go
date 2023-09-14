@@ -1,9 +1,13 @@
 package service
 
-import "token-assignment/internal/project/repository"
+import (
+	"token-assignment/internal/project/dto"
+	"token-assignment/internal/project/repository"
+)
 
 type ProjectService interface {
 	GetBitfinexTokenInfo(tokenSymbol string) error
+	GetTokenInfo(dto.GetTokenInfoReq) (dto.GetTokenInfoResp, error)
 }
 
 type ProjectSvc struct {
