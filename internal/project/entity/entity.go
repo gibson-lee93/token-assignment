@@ -11,6 +11,6 @@ type TokenInfo struct {
 	ID            int       `bun:"id,autoincrement,pk"`
 	Symbol        string    `bun:"symbol,notnull"`
 	Price         float32   `bun:"price,notnull"`
-	Source        string    `bun:"srouce,notnull"`
+	Source        string    `bun:"source,notnull"`
 	Timestamp     time.Time `bun:"timestamp,notnull"`
 }

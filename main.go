@@ -21,5 +21,8 @@ func main() {
 
 	_pHandler.NewProjectHandler(e, pService)
 
+	tokenSymbol := "USTUSD"
+	pService.GetBitfinexTokenInfo(tokenSymbol)
+
 	e.Logger.Fatal(e.Start(":1323"))
 }

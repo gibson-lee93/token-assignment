@@ -1,8 +1,14 @@
 package repository
 
-import "github.com/uptrace/bun"
+import (
+	"token-assignment/internal/project/entity"
 
-type ProjectRepository interface{}
+	"github.com/uptrace/bun"
+)
+
+type ProjectRepository interface {
+	CreateTokenInfo(entity.TokenInfo) error
+}
 
 type ProjectRepo struct {
 	db *bun.DB
