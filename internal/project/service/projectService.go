@@ -2,7 +2,9 @@ package service
 
 import "token-assignment/internal/project/repository"
 
-type ProjectService interface{}
+type ProjectService interface {
+	GetBitfinexTokenInfo(tokenSymbol string) error
+}
 
 type ProjectSvc struct {
 	repository repository.ProjectRepository
