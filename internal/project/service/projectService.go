@@ -8,6 +8,8 @@ import (
 type ProjectService interface {
 	GetBitfinexTokenInfo(tokenSymbol string) error
 	GetTokenInfo(dto.GetTokenInfoReq) (dto.GetTokenInfoResp, error)
+	GetChainlinkTokenInfo(tokenSymbol, contractABI, rpcURL string) error
+	GetTokenInfoScheduler()
 }
 
 type ProjectSvc struct {

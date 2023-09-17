@@ -22,7 +22,8 @@ func (repo *ProjectRepo) CreateTokenInfo(entReq entity.TokenInfo) error {
 func (repo *ProjectRepo) GetTokenInfo(entReq entity.GetTokenInfoReq) (entResp entity.TokenInfo, err error) {
 	query := repo.db.NewSelect().
 		Model((*entity.TokenInfo)(nil)).
-		Where("symbol = ?", entReq.Symbol)
+		Where("symbol = ?", entReq.Symbol).
+		Where("source = ?", entReq.Source)
 
 	// get average price if starttime & enttime is present
 	if !entReq.StartTime.IsZero() && !entReq.EndTime.IsZero() {
@@ -30,11 +31,11 @@ func (repo *ProjectRepo) GetTokenInfo(entReq entity.GetTokenInfoReq) (entResp en
 			Model((*entity.TokenInfo)(nil)).
 			ColumnExpr("AVG(price)").
 			Where("symbol = ?", entReq.Symbol).
+			Where("source = ?", entReq.Source).
 			Where("timestamp >= ?", entReq.StartTime).
 			Where("timestamp <= ?", entReq.EndTime)
 
 		var avgPrice float32
-		log.Println(avgQuery)
 		if err = avgQuery.Scan(context.Background(), &avgPrice); err != nil && err != sql.ErrNoRows {
 			log.Println(err)
 			return entResp, err
@@ -46,7 +47,7 @@ func (repo *ProjectRepo) GetTokenInfo(entReq entity.GetTokenInfoReq) (entResp en
 		return entResp, nil
 	}
 
-	// return latest token if starttime & enttime is not present
+	// return latest token if starttime & endtime is not present
 	if err = query.
 		Order("timestamp DESC").
 		Limit(1).
