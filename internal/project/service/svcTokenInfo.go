@@ -200,7 +200,7 @@ func (svc *ProjectSvc) GetTokenInfoScheduler() {
 }
 
 func ConvertAbiToString() string {
-	abiFile, err := os.ReadFile("./internal/project/contract/ChainLink.abi")
+	abiFile, err := os.ReadFile("./internal/project/abi/ChainLink.abi")
 	if err != nil {
 		log.Println("Error reading ABI file:", err)
 	}
