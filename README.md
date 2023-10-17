@@ -35,20 +35,12 @@ MySQL DB 포트: `3306`
 ### API 명세서
 **토큰 이름으로 최신의 토큰 정보 조회**
 - **Endpoint**: `GET /tokeninfo`
-- **Request Body**:
+- **Query Parameters**:
   - `tokenSymbol` (토큰 이름): Not Null (`USDT`, `USDC`, `ETH` 중 택 1 )
   - `source` (가격 출처): Nullable
   - `startTime` (특정 구간 시작 시간): Nullable (`endTime` 값이 있을경우 Not Null)
   - `endTime` (특정 구간 끝 시간): Nullable (`startTime` 값이 있을경우 Not Null)
-  - 예시:
-``` JSON
-{
-    "tokenSymbol": "USDC",
-    "source": "chainlink",
-    "startTime": "2023-09-17T18:12:36Z",
-    "endTime": "2023-09-17T18:16:00Z"
-}
-```
+  
 - **Response**:
   - Request Body에 토큰 이름만 입력했을 경우 해당 토큰의 최신 정보를 조회
   - Request Body에 토큰 이름과 가격 출처를 입력했을 경우 해당 토큰의 최신 정보 조회 
